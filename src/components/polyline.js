@@ -29,6 +29,8 @@ const events = [
   'mouseover',
   'mouseup',
   'rightclick',
+  'paths_changed',
+  'path_changed'
 ]
 
 export default buildComponent({
@@ -45,7 +47,8 @@ export default buildComponent({
   ctr: () => google.maps.Polyline,
   emits: events,
   afterCreate(inst) {
-    let clearEvents = () => {}
+    let clearEvents = () => {
+    }
 
     events.forEach((event) => {
       inst.addListener(event, (payload) => {
