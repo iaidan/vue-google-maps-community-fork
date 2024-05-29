@@ -76,6 +76,7 @@ const events = [
   'resize',
   'rightclick',
   'tilesloaded',
+  'tilt_changed',
 ]
 
 // Plain Google Maps methods exposed here for convenience
