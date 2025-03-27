@@ -81,6 +81,8 @@ const events = [
   'mousedown',
   'mouseover',
   'mouseout',
+  'onIcon_changed',
+  'position_changed',
 ]
 
 export default buildComponent({
