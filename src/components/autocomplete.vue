@@ -2,7 +2,7 @@
   <template v-if="$slots['input']">
     <slot name="input" v-bind="$attrs"></slot>
   </template>
-  <input v-else-if="!$slots['input']" ref="input" v-bind="$attrs" v-on="$attrs" />
+  <input v-else-if="!$slots['input']" ref="input" v-bind="$attrs" v-on="domListeners" />
 </template>
 
 <script>
@@ -40,6 +40,7 @@ const props = {
 }
 
 export default {
+  emits: ['place_changed'],
   mounted() {
     const _this = this
     this.$gmapApiPromiseLazy().then(() => {
@@ -83,6 +84,42 @@ export default {
         this.$emit('place_changed', this.$autocomplete.getPlace())
       })
     })
+  },
+  computed: {
+    domListeners() {
+      const allowMap = {
+        onChange: 'change',
+        onInput: 'input',
+        onFocus: 'focus',
+        onBlur: 'blur',
+        onKeydown: 'keydown',
+        onKeyup: 'keyup',
+        onKeypress: 'keypress',
+        onCompositionstart: 'compositionstart',
+        onCompositionupdate: 'compositionupdate',
+        onCompositionend: 'compositionend',
+        onClick: 'click',
+        onDblclick: 'dblclick',
+        onMousedown: 'mousedown',
+        onMouseup: 'mouseup',
+        onMouseenter: 'mouseenter',
+        onMouseleave: 'mouseleave',
+        onMousemove: 'mousemove',
+        onWheel: 'wheel',
+        onPaste: 'paste',
+        onCut: 'cut',
+        onCopy: 'copy',
+      }
+
+      const out = {}
+      for (const [key, val] of Object.entries(this.$attrs)) {
+        const domEvent = allowMap[key]
+        if (domEvent && (typeof val === 'function' || Array.isArray(val))) {
+          out[domEvent] = val
+        }
+      }
+      return out
+    },
   },
   props: {
     ...mappedPropsToVueProps(mappedProps),
