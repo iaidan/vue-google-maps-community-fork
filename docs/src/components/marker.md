@@ -72,7 +72,8 @@ You can register events (like click) in the same way as you do in your Vue compo
 
 ## Adding a custom icon
 
-You can use `:icon` prop to pass a custom icon to your `GMapMarker`. Also, you can pass a local resource or an image from internet:
+You can use `:icon` prop to pass a custom icon to your `GMapMarker`. Also, you can pass a local resource or an image
+from internet:
 
 ```html
 <template>
@@ -89,7 +90,8 @@ You can use `:icon` prop to pass a custom icon to your `GMapMarker`. Also, you c
 </template>
 ```
 
-Local resources can be passed in using `require`, for example: `:icon="require('@/assets/images/place-icon.svg').default"`.
+Local resources can be passed in using `require`, for example:
+`:icon="require('@/assets/images/place-icon.svg').default"`.
 
 The `icon` prop also can receive an object to define custom size and label origin:
 

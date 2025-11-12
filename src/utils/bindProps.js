@@ -4,10 +4,10 @@ import {Str} from './string';
 export function getPropsValues(vueInst, props) {
   return Object.keys(props).reduce((acc, prop) => {
     if (vueInst[prop] !== undefined) {
-      acc[prop] = vueInst[prop]
+      acc[prop] = vueInst[prop];
     }
-    return acc
-  }, {})
+    return acc;
+  }, {});
 }
 
 /**
@@ -19,19 +19,19 @@ export function getPropsValues(vueInst, props) {
  */
 export function bindProps(vueInst, googleMapsInst, props) {
   for (let attribute in props) {
-    let { twoWay, type, trackProperties, noBind } = props[attribute]
+    let {twoWay, type, trackProperties, noBind} = props[attribute];
 
-    if (noBind) continue
+    if (noBind) continue;
 
-    const setMethodName = 'set' + Str.capitalizeFirstLetter(attribute)
-    const getMethodName = 'get' + Str.capitalizeFirstLetter(attribute)
-    const eventName = attribute.toLowerCase() + '_changed'
-    const initialValue = vueInst[attribute]
+    const setMethodName = 'set' + Str.capitalizeFirstLetter(attribute);
+    const getMethodName = 'get' + Str.capitalizeFirstLetter(attribute);
+    const eventName = attribute.toLowerCase() + '_changed';
+    const initialValue = vueInst[attribute];
 
     if (typeof googleMapsInst[setMethodName] === 'undefined') {
       throw new Error(
         `${setMethodName} is not a method of (the Maps object corresponding to) ${vueInst.$options._componentTag}`
-      )
+      );
     }
 
     // We need to avoid an endless
@@ -42,31 +42,31 @@ export function bindProps(vueInst, googleMapsInst, props) {
       vueInst.$watch(
         attribute,
         () => {
-          const attributeValue = vueInst[attribute]
+          const attributeValue = vueInst[attribute];
 
-          googleMapsInst[setMethodName](attributeValue)
+          googleMapsInst[setMethodName](attributeValue);
         },
         {
           immediate: typeof initialValue !== 'undefined',
           deep: type === Object,
         }
-      )
+      );
     } else {
       WatchPrimitiveProperties(
         vueInst,
         trackProperties.map((prop) => `${attribute}.${prop}`),
         () => {
-          googleMapsInst[setMethodName](vueInst[attribute])
+          googleMapsInst[setMethodName](vueInst[attribute]);
         },
         vueInst[attribute] !== undefined
-      )
+      );
     }
 
     if (twoWay && (vueInst.$gmapOptions.autobindAllEvents || vueInst.$attrs[eventName])) {
       googleMapsInst.addListener(eventName, () => {
         // eslint-disable-line no-unused-vars
-        vueInst.$emit(eventName, googleMapsInst[getMethodName]())
-      })
+        vueInst.$emit(eventName, googleMapsInst[getMethodName]());
+      });
     }
   }
 }

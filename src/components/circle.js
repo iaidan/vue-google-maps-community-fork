@@ -22,7 +22,7 @@ const props = {
     type: Object,
     twoWay: false,
   },
-}
+};
 
 const events = [
   'click',
@@ -38,7 +38,7 @@ const events = [
   'rightclick',
   'center_changed',
   'radius_changed',
-]
+];
 
 export default buildComponent({
   mappedProps: props,
@@ -49,8 +49,8 @@ export default buildComponent({
   afterCreate(inst) {
     events.forEach((event) => {
       inst.addListener(event, (payload) => {
-        this.$emit(event, payload)
-      })
-    })
+        this.$emit(event, payload);
+      });
+    });
   },
-})
+});

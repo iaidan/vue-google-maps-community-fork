@@ -49,7 +49,9 @@ Example on [Playcode](https://playcode.io/1041245)
 
 ### Cloud-based styles with Map ID
 
-You can manage your cloud-based styles on [Google Maps Platform: Map Styles](https://console.cloud.google.com/google/maps-apis/studio/styles), and your map ids on [Google Maps Platform: Map Management](https://console.cloud.google.com/google/maps-apis/studio/maps)
+You can manage your cloud-based styles
+on [Google Maps Platform: Map Styles](https://console.cloud.google.com/google/maps-apis/studio/styles), and your map ids
+on [Google Maps Platform: Map Management](https://console.cloud.google.com/google/maps-apis/studio/maps)
 
 [Documentation: Maps JavaScript API - Using Cloud-based maps styling](https://developers.google.com/maps/documentation/javascript/cloud-based-map-styling)
 
@@ -118,7 +120,6 @@ You can set the maximum and minimum zoom levels for the map:
 
 - Max zoom specifies how far the user can zoom in, 18-20 is normally the max.
 - Min zoom is how far they can zoom out, 0-3 is normally the min.
-
 
 ## Access Google Maps instance
 

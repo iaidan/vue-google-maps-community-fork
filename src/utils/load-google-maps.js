@@ -1,62 +1,63 @@
 export class Loader {
-  constructor({ apiKey, libraries = [], language, region, version, mapIds }) {
+  constructor({apiKey, libraries = [], language, region, version, mapIds}) {
     // @ts-ignore
-    this.callbacks = []
-    this.CALLBACK = '__googleMapsCallback'
-    this.version = version
-    this.apiKey = apiKey
-    this.libraries = libraries
+    this.callbacks = [];
+    this.CALLBACK = '__googleMapsCallback';
+    this.version = version;
+    this.apiKey = apiKey;
+    this.libraries = libraries;
     // @ts-ignore
-    this.language = language
+    this.language = language;
     // @ts-ignore
-    this.region = region
-    this.URL = 'https://maps.googleapis.com/maps/api/js'
+    this.region = region;
+    this.URL = 'https://maps.googleapis.com/maps/api/js';
     // @ts-ignore
-    this.mapIds = mapIds
+    this.mapIds = mapIds;
   }
+
   /**
    * CreateUrl returns the Google Maps JavaScript API script url given the [[LoaderOptions]].
    *
    * @ignore
    */
   createUrl() {
-    let url = this.URL
-    console.log(this.URL)
+    let url = this.URL;
+    console.log(this.URL);
 
-    url += `?callback=${this.CALLBACK}`
+    url += `?callback=${this.CALLBACK}`;
 
     if (this.apiKey) {
-      url += `&key=${this.apiKey}`
+      url += `&key=${this.apiKey}`;
     }
 
     if (this.libraries.length > 0) {
-      url += `&libraries=${this.libraries.join(',')}`
+      url += `&libraries=${this.libraries.join(',')}`;
     }
 
     if (this.language) {
-      url += `&language=${this.language}`
+      url += `&language=${this.language}`;
     }
 
     if (this.region) {
-      url += `&region=${this.region}`
+      url += `&region=${this.region}`;
     }
 
     if (this.version) {
-      url += `&v=${this.version}`
+      url += `&v=${this.version}`;
     }
 
     if (this.mapIds) {
-      url += `&map_ids=${this.mapIds.join(',')}`
+      url += `&map_ids=${this.mapIds.join(',')}`;
     }
 
-    return url
+    return url;
   }
 
   /**
    * Load the Google Maps JavaScript API script and return a Promise.
    */
   load() {
-    return this.loadPromise()
+    return this.loadPromise();
   }
 
   /**
@@ -68,68 +69,68 @@ export class Loader {
     return new Promise((resolve, reject) => {
       this.loadCallback((err) => {
         if (!err) {
-          resolve()
+          resolve();
         } else {
-          reject(err)
+          reject(err);
         }
-      })
-    })
+      });
+    });
   }
 
   /**
    * Load the Google Maps JavaScript API script with a callback.
    */
   loadCallback(fn) {
-    this.callbacks.push(fn)
-    this.execute()
+    this.callbacks.push(fn);
+    this.execute();
   }
 
   /**
    * Set the script on document.
    */
   setScript() {
-    const url = this.createUrl()
-    const script = document.createElement('script')
+    const url = this.createUrl();
+    const script = document.createElement('script');
 
-    script.type = 'text/javascript'
-    script.src = url
+    script.type = 'text/javascript';
+    script.src = url;
     // @ts-ignore
-    script.onerror = this.loadErrorCallback.bind(this)
-    script.defer = true
-    script.async = true
-    document.head.appendChild(script)
+    script.onerror = this.loadErrorCallback.bind(this);
+    script.defer = true;
+    script.async = true;
+    document.head.appendChild(script);
   }
 
   loadErrorCallback(e) {
-    this.onerrorEvent = e
-    this.callback()
+    this.onerrorEvent = e;
+    this.callback();
   }
 
   setCallback() {
-    window.__googleMapsCallback = this.callback.bind(this)
+    window.__googleMapsCallback = this.callback.bind(this);
   }
 
   callback() {
-    this.done = true
-    this.loading = false
+    this.done = true;
+    this.loading = false;
 
     this.callbacks.forEach((cb) => {
-      cb(this.onerrorEvent)
-    })
+      cb(this.onerrorEvent);
+    });
 
-    this.callbacks = []
+    this.callbacks = [];
   }
 
   execute() {
     if (this.done) {
-      this.callback()
+      this.callback();
     } else {
       if (this.loading) {
         // do nothing but wait
       } else {
-        this.loading = true
-        this.setCallback()
-        this.setScript()
+        this.loading = true;
+        this.setCallback();
+        this.setScript();
       }
     }
   }

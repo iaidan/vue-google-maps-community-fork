@@ -6,7 +6,9 @@ In order to use custom renderer functions or clustering algorithms, you will nee
 
 Use `npm install @googlemaps/markerclusterer` to install the library into your project.
 
-Note: this is required because it was the best option for us to make Clustering viable. The original version of this library wasn't supporting the new MarkerClustering package version, so we had to make adjustments. You can read more about it in [this PR](https://github.com/NathanAP/vue-google-maps-community-fork/pull/19).
+Note: this is required because it was the best option for us to make Clustering viable. The original version of this
+library wasn't supporting the new MarkerClustering package version, so we had to make adjustments. You can read more
+about it in [this PR](https://github.com/NathanAP/vue-google-maps-community-fork/pull/19).
 
 ## Example
 

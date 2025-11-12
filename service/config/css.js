@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const genStyleRules = () => {
-  const isProd = process.env.NODE_ENV === 'production'
+  const isProd = process.env.NODE_ENV === 'production';
 
   const cssLoader = {
     loader: 'css-loader',
@@ -13,35 +13,35 @@ const genStyleRules = () => {
       importLoaders: 1 + 1,
       esModule: false, // css-loader using ES Modules as default in v4, but vue-style-loader support cjs only.
     },
-  }
+  };
   const extractPluginLoader = {
     loader: MiniCssExtractPlugin.loader,
-  }
+  };
   const vueStyleLoader = {
     loader: 'vue-style-loader',
-  }
+  };
 
   function createCSSRule(test, loader, loaderOptions) {
-    const loaders = [cssLoader]
+    const loaders = [cssLoader];
 
     if (isProd) {
-      loaders.unshift(extractPluginLoader)
+      loaders.unshift(extractPluginLoader);
     } else {
-      loaders.unshift(vueStyleLoader)
+      loaders.unshift(vueStyleLoader);
     }
 
     if (loader) {
-      loaders.push({ loader, options: loaderOptions })
+      loaders.push({loader, options: loaderOptions});
     }
 
-    return { test, use: loaders }
+    return {test, use: loaders};
   }
 
-  return [createCSSRule(/\.css$/)]
-}
+  return [createCSSRule(/\.css$/)];
+};
 
 module.exports = {
   module: {
     rules: genStyleRules(),
   },
-}
+};

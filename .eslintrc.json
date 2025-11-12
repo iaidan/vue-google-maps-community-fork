@@ -19,6 +19,9 @@
     "html"
   ],
   "settings": {
-    "html/html-extensions": [".html", ".vue"]
+    "html/html-extensions": [
+      ".html",
+      ".vue"
+    ]
   }
 }

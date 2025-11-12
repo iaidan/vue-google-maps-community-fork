@@ -12,6 +12,7 @@ import Map from './components/map.vue';
 import Heatmap from './components/heatmap';
 import Autocomplete from './components/autocomplete.vue';
 import AdvancedMarker from './components/advancedMarker.vue';
+import PlaceAutocomplete from './components/placeAutocomplete.vue';
 
 import MapElementMixin from './components/mapElementMixin';
 import buildComponent from './components/build-component';

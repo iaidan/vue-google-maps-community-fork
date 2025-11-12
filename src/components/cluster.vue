@@ -18,9 +18,9 @@ const props = {
     default: new DefaultRenderer(),
     noBind: true,
   },
-}
+};
 
-const events = ['clusteringbegin', 'clusteringend']
+const events = ['clusteringbegin', 'clusteringend'];
 
 export default buildComponent({
   mappedProps: props,
@@ -28,28 +28,28 @@ export default buildComponent({
   name: 'cluster',
   ctr: () => {
     if (typeof MarkerClusterer === 'undefined') {
-      const errorMessage = 'MarkerClusterer is not installed!'
-      console.error(errorMessage)
-      throw new Error(errorMessage)
+      const errorMessage = 'MarkerClusterer is not installed!';
+      console.error(errorMessage);
+      throw new Error(errorMessage);
     }
-    return MarkerClusterer
+    return MarkerClusterer;
   },
-  ctrArgs: ({ map, ...otherOptions }) => [{ map, ...otherOptions }],
+  ctrArgs: ({map, ...otherOptions}) => [{map, ...otherOptions}],
   afterCreate(inst) {
     const reinsertMarkers = () => {
-      const oldMarkers = inst.getMarkers()
-      inst.clearMarkers()
-      inst.addMarkers(oldMarkers)
-    }
+      const oldMarkers = inst.getMarkers();
+      inst.clearMarkers();
+      inst.addMarkers(oldMarkers);
+    };
     for (let prop in props) {
       if (props[prop].twoWay) {
-        this.$on(prop.toLowerCase() + '_changed', reinsertMarkers)
+        this.$on(prop.toLowerCase() + '_changed', reinsertMarkers);
       }
     }
   },
   updated() {
     if (this.$clusterObject) {
-      this.$clusterObject.render()
+      this.$clusterObject.render();
     }
   },
   beforeUnmount() {
@@ -57,14 +57,14 @@ export default buildComponent({
     if (this.$children && this.$children.length) {
       this.$children.forEach((marker) => {
         if (marker.$clusterObject === this.$clusterObject) {
-          marker.$clusterObject = null
+          marker.$clusterObject = null;
         }
-      })
+      });
     }
 
     if (this.$clusterObject) {
-      this.$clusterObject.clearMarkers()
+      this.$clusterObject.clearMarkers();
     }
   },
-})
+});
 </script>

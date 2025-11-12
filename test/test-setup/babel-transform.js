@@ -1,11 +1,11 @@
 // Adapted from https://github.com/nlf/lab-babel/blob/master/lib/index.js
-require('babel-polyfill')
-var Babel = require('babel-core')
+require('babel-polyfill');
+var Babel = require('babel-core');
 
-var internals = {}
+var internals = {};
 internals.transform = function (content, filename) {
   if (/^node_modules/.test(filename)) {
-    return content
+    return content;
   }
 
   var transformed = Babel.transform(content, {
@@ -16,15 +16,15 @@ internals.transform = function (content, filename) {
     auxiliaryCommentAfter: '$lab:coverage:on$',
     presets: ['es2015'],
     plugins: ['transform-object-rest-spread'],
-  })
+  });
 
-  return transformed.code
-}
+  return transformed.code;
+};
 
-internals.extensions = ['js', 'jsx', 'es', 'es6']
-internals.methods = []
+internals.extensions = ['js', 'jsx', 'es', 'es6'];
+internals.methods = [];
 for (var i = 0, il = internals.extensions.length; i < il; ++i) {
-  internals.methods.push({ ext: internals.extensions[i], transform: internals.transform })
+  internals.methods.push({ext: internals.extensions[i], transform: internals.transform});
 }
 
-module.exports = internals.methods
+module.exports = internals.methods;

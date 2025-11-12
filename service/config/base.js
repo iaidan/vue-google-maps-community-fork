@@ -1,16 +1,16 @@
-'use strict'
+'use strict';
 
-const { DefinePlugin } = require('webpack')
-const { VueLoaderPlugin } = require('vue-loader')
-const ESLintPlugin = require('eslint-webpack-plugin')
+const {DefinePlugin} = require('webpack');
+const {VueLoaderPlugin} = require('vue-loader');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
-const resolveClientEnv = require('../utils/resolveClientEnv')
-const paths = require('../utils/paths')
+const resolveClientEnv = require('../utils/resolveClientEnv');
+const paths = require('../utils/paths');
 
-const config = require('../project.config')
+const config = require('../project.config');
 
-const isProd = process.env.NODE_ENV === 'production'
-const outputFileName = paths.getAssetPath(`js/[name]${isProd ? '' : ''}.js`)
+const isProd = process.env.NODE_ENV === 'production';
+const outputFileName = paths.getAssetPath(`js/[name]${isProd ? '' : ''}.js`);
 
 module.exports = {
   context: process.cwd(),
@@ -44,7 +44,7 @@ module.exports = {
     new DefinePlugin({
       __VUE_OPTIONS_API__: 'true',
       __VUE_PROD_DEVTOOLS__: 'false',
-      ...resolveClientEnv({ publicPath: config.dev.publicPath }),
+      ...resolveClientEnv({publicPath: config.dev.publicPath}),
     }),
   ],
 
@@ -57,4 +57,4 @@ module.exports = {
       },
     ],
   },
-}
+};

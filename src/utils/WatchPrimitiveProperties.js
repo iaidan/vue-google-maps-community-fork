@@ -11,19 +11,19 @@ export default function WatchPrimitiveProperties(
   handler,
   immediate = false
 ) {
-  let isHandled = false
+  let isHandled = false;
 
   function requestHandle() {
     if (!isHandled) {
-      isHandled = true
+      isHandled = true;
       vueInst.$nextTick(() => {
-        isHandled = false
-        handler()
-      })
+        isHandled = false;
+        handler();
+      });
     }
   }
 
   for (let prop of propertiesToTrack) {
-    vueInst.$watch(prop, requestHandle, { immediate })
+    vueInst.$watch(prop, requestHandle, {immediate});
   }
 }

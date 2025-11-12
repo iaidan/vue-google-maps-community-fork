@@ -3,7 +3,7 @@ import * as shell from 'shelljs';
 import path from 'path';
 
 export default new Promise((resolve, reject) => {
-  const webpackConfig = require('../../webpack.config.js')[0]
+  const webpackConfig = require('../../webpack.config.js')[0];
 
   webpack(
     {
@@ -15,11 +15,11 @@ export default new Promise((resolve, reject) => {
         shell.cp(
           path.resolve(__dirname, '../../dist/vue-google-maps.js'),
           path.resolve(__dirname, '../../examples/vue-google-maps.js')
-        )
-        resolve()
+        );
+        resolve();
       } else {
-        reject(err)
+        reject(err);
       }
     }
-  )
-})
+  );
+});

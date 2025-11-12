@@ -68,7 +68,7 @@ const props = {
     twoWay: true,
     default: true,
   },
-}
+};
 
 const events = [
   'click',
@@ -83,7 +83,7 @@ const events = [
   'mouseout',
   'onIcon_changed',
   'position_changed',
-]
+];
 
 export default buildComponent({
   mappedProps: props,
@@ -99,37 +99,37 @@ export default buildComponent({
   emits: events,
   unmounted() {
     if (!this.$markerObject) {
-      return
+      return;
     }
 
     if (this.$clusterObject) {
       // Repaint will be performed in `updated()` of cluster
-      this.$clusterObject.removeMarker(this.$markerObject, true)
+      this.$clusterObject.removeMarker(this.$markerObject, true);
     } else {
-      this.$markerObject.setMap(null)
+      this.$markerObject.setMap(null);
     }
   },
 
   beforeCreate(options) {
     if (this.$clusterPromise) {
-      options.map = null
+      options.map = null;
     }
 
-    return this.$clusterPromise
+    return this.$clusterPromise;
   },
 
   afterCreate(inst) {
     events.forEach((event) => {
       inst.addListener(event, (payload) => {
-        this.$emit(event, payload)
-      })
-    })
+        this.$emit(event, payload);
+      });
+    });
     if (this.$clusterPromise) {
       this.$clusterPromise.then((co) => {
-        this.$clusterObject = co
-        co.addMarker(inst)
-      })
+        this.$clusterObject = co;
+        co.addMarker(inst);
+      });
     }
   },
-})
+});
 </script>
