@@ -1,4 +1,4 @@
-import buildComponent from './build-component'
+import buildComponent from './build-component';
 
 const props = {
   center: {

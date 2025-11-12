@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import bindEvents from '../utils/bindEvents.js'
-import { bindProps, getPropsValues } from '../utils/bindProps.js'
-import mountableMixin from '../utils/mountableMixin.js'
+import bindEvents from '../utils/bindEvents.js';
+import {bindProps, getPropsValues} from '../utils/bindProps.js';
+import mountableMixin from '../utils/mountableMixin.js';
 
-import TwoWayBindingWrapper from '../utils/TwoWayBindingWrapper.js'
-import WatchPrimitiveProperties from '../utils/WatchPrimitiveProperties.js'
-import { mappedPropsToVueProps } from './build-component.js'
+import TwoWayBindingWrapper from '../utils/TwoWayBindingWrapper.js';
+import WatchPrimitiveProperties from '../utils/WatchPrimitiveProperties.js';
+import {mappedPropsToVueProps} from './build-component.js';
 
 const props = {
   center: {

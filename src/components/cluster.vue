@@ -4,12 +4,8 @@
   </div>
 </template>
 <script>
-import {
-  DefaultRenderer,
-  MarkerClusterer,
-  SuperClusterAlgorithm,
-} from '@googlemaps/markerclusterer'
-import buildComponent from './build-component.js'
+import {DefaultRenderer, MarkerClusterer, SuperClusterAlgorithm,} from '@googlemaps/markerclusterer';
+import buildComponent from './build-component.js';
 
 const props = {
   algorithm: {

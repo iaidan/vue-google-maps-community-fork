@@ -1,6 +1,6 @@
-import Puppeteer from 'puppeteer'
-import CompileStandalone from './compile-standalone'
-import path from 'path'
+import Puppeteer from 'puppeteer';
+import CompileStandalone from './compile-standalone';
+import path from 'path';
 
 const puppeteerPromise = CompileStandalone.then(() => {
   let options = {}

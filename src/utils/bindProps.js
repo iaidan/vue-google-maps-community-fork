@@ -1,5 +1,5 @@
-import WatchPrimitiveProperties from '../utils/WatchPrimitiveProperties'
-import { Str } from './string'
+import WatchPrimitiveProperties from '../utils/WatchPrimitiveProperties';
+import {Str} from './string';
 
 export function getPropsValues(vueInst, props) {
   return Object.keys(props).reduce((acc, prop) => {

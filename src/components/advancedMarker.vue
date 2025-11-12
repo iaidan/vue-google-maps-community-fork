@@ -4,9 +4,9 @@
   </div>
 </template>
 <script>
-  import buildComponent from './build-component.js'
+import buildComponent from './build-component.js';
 
-  const props = {
+const props = {
   position: {
   type: Object,
   twoWay: true,

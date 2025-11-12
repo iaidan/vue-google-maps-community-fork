@@ -1,6 +1,6 @@
-import bindEvents from '../utils/bindEvents.js'
-import { bindProps, getPropsValues } from '../utils/bindProps.js'
-import MapElementMixin from './mapElementMixin'
+import bindEvents from '../utils/bindEvents.js';
+import {bindProps, getPropsValues} from '../utils/bindProps.js';
+import MapElementMixin from './mapElementMixin';
 
 /**
  *
