@@ -41,6 +41,9 @@ const props = {
 
 export default {
   emits: ['place_changed'],
+  data() {
+    return { useLegacy: true }
+  },
   mounted() {
     const _this = this
     this.$gmapApiPromiseLazy().then(() => {

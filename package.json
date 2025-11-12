@@ -1,7 +1,7 @@
 {
   "name": "vue-google-maps-community-fork",
   "description": "Google Maps components for VueJS 3 maintained by the community",
-  "version": "0.3.3",
+  "version": "0.3.5",
   "private": false,
   "main": "src/main.js",
   "keywords": [
@@ -11,7 +11,7 @@
     "Vue 3 Google maps"
   ],
   "bugs": {
-    "url": "https://github.com/NathanAP/vue-google-maps-community-fork/issues"
+    "url": "https://github.com/iaidan/vue-google-maps-community-fork/issues"
   },
   "scripts": {
     "build": "node service/commands/build.js",
@@ -43,11 +43,10 @@
     "webpack": "^5.74.0",
     "webpack-merge": "^5.8.0"
   },
-  "homepage": "https://vue-google-maps-community-fork.netlify.app",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NathanAP/vue-google-maps-community-fork.git"
+    "url": "git+https://github.com/iaidan/vue-google-maps-community-fork.git"
   },
   "types": "types/index.d.ts",
   "dependencies": {
@@ -57,5 +56,5 @@
     "doc": "docs",
     "test": "test"
   },
-  "author": "Nathan A Paludo"
+  "author": "Aidan Taylor <aidan@logicforge.co.uk> (LogicForge Limited)"
 }

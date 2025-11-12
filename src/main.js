@@ -12,6 +12,7 @@ import Map from './components/map.vue'
 import Heatmap from './components/heatmap'
 import Autocomplete from './components/autocomplete.vue'
 import AdvancedMarker from './components/advancedMarker.vue'
+import PlaceAutocomplete from './components/placeAutocomplete.vue'
 
 import MapElementMixin from './components/mapElementMixin'
 import buildComponent from './components/build-component'
@@ -34,6 +35,7 @@ export {
   Heatmap,
   buildComponent,
   Autocomplete,
+  PlaceAutocomplete,
   MountableMixin,
 }
 
@@ -77,6 +79,7 @@ export default function install(Vue, options) {
     Vue.component('GMapCircle', Circle)
     Vue.component('GMapRectangle', Rectangle)
     Vue.component('GMapAutocomplete', Autocomplete)
+    Vue.component('GMapPlaceAutocomplete', PlaceAutocomplete)
     Vue.component('GMapHeatmap', Heatmap)
   }
 }

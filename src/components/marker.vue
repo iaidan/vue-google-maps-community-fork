@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div
+    @click="
+      () => {
+        console.log('sdfsd')
+      }
+    "
+  >
     <slot></slot>
   </div>
 </template>
@@ -75,17 +81,8 @@ const events = [
   'mousedown',
   'mouseover',
   'mouseout',
-  'icon_changed',
+  'onIcon_changed',
   'position_changed',
-  'animation_changed',
-  'zindex_changed',
-  'draggable_changed',
-  'clickable_changed',
-  'visible_changed',
-  'cursor_changed',
-  'title_changed',
-  'shape_changed',
-  'flat_changed',
 ]
 
 export default buildComponent({

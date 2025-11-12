@@ -23,6 +23,7 @@ export const InfoWindow: Component
 export const Map: Component
 export const Heatmap: Component
 export const Autocomplete: Component
+export const PlaceAutocomplete: Component
 
 declare const plugin: PluginInstallFunction
 export default plugin
