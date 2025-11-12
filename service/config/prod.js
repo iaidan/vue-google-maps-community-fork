@@ -1,12 +1,12 @@
-'use strict'
+'use strict';
 
-const { merge } = require('webpack-merge')
-const TerserPlugin = require('terser-webpack-plugin')
+const {merge} = require('webpack-merge');
+const TerserPlugin = require('terser-webpack-plugin');
 
-const baseWebpackConfig = require('./base')
-const cssWebpackConfig = require('./css')
-const config = require('../project.config')
-const terserOptions = require('./terserOptions')
+const baseWebpackConfig = require('./base');
+const cssWebpackConfig = require('./css');
+const config = require('../project.config');
+const terserOptions = require('./terserOptions');
 
 module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
   mode: 'production',
@@ -37,4 +37,4 @@ module.exports = merge(baseWebpackConfig, cssWebpackConfig, {
       },
     },
   },
-})
+});

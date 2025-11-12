@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = () => ({
   terserOptions: {
@@ -39,4 +39,4 @@ module.exports = () => ({
   },
   // parallel: options.parallel,
   extractComments: false,
-})
+});

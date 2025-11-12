@@ -1,6 +1,6 @@
-import bindEvents from '../utils/bindEvents.js'
-import { bindProps, getPropsValues } from '../utils/bindProps.js'
-import MapElementMixin from './mapElementMixin'
+import bindEvents from '../utils/bindEvents.js';
+import {bindProps, getPropsValues} from '../utils/bindProps.js';
+import MapElementMixin from './mapElementMixin';
 
 /**
  *
@@ -44,81 +44,81 @@ import MapElementMixin from './mapElementMixin'
  *
  */
 export default function (options) {
-  const { mappedProps, name, ctr, ctrArgs, events, beforeCreate, afterCreate, props, ...rest } =
-    options
+  const {mappedProps, name, ctr, ctrArgs, events, beforeCreate, afterCreate, props, ...rest} =
+    options;
 
-  const promiseName = `$${name}Promise`
-  const instanceName = `$${name}Object`
+  const promiseName = `$${name}Promise`;
+  const instanceName = `$${name}Object`;
 
-  assert(!(rest.props instanceof Array), '`props` should be an object, not Array')
+  assert(!(rest.props instanceof Array), '`props` should be an object, not Array');
 
   return {
-    ...(typeof GENERATE_DOC !== 'undefined' ? { $vgmOptions: options } : {}),
+    ...(typeof GENERATE_DOC !== 'undefined' ? {$vgmOptions: options} : {}),
     mixins: [MapElementMixin],
     props: {
       ...props,
       ...mappedPropsToVueProps(mappedProps),
     },
     render() {
-      return ''
+      return '';
     },
     provide() {
       const promise = this.$mapPromise
         .then((map) => {
           // Infowindow needs this to be immediately available
-          this.$map = map
+          this.$map = map;
 
           // Initialize the maps with the given options
           const options = {
             ...this.options,
             map,
             ...getPropsValues(this, mappedProps),
-          }
-          delete options.options // delete the extra options
+          };
+          delete options.options; // delete the extra options
 
           if (beforeCreate) {
-            const result = beforeCreate.bind(this)(options)
+            const result = beforeCreate.bind(this)(options);
 
             if (result instanceof Promise) {
-              return result.then(() => ({ options }))
+              return result.then(() => ({options}));
             }
           }
-          return { options }
+          return {options};
         })
-        .then(({ options }) => {
-          const ConstructorObject = ctr()
+        .then(({options}) => {
+          const ConstructorObject = ctr();
           // https://stackoverflow.com/questions/1606797/use-of-apply-with-new-operator-is-this-possible
           this[instanceName] = ctrArgs
             ? new (Function.prototype.bind.call(
-                ConstructorObject,
-                null,
-                ...ctrArgs(options, getPropsValues(this, props || {}))
-              ))()
-            : new ConstructorObject(options)
+              ConstructorObject,
+              null,
+              ...ctrArgs(options, getPropsValues(this, props || {}))
+            ))()
+            : new ConstructorObject(options);
 
-          bindProps(this, this[instanceName], mappedProps)
-          bindEvents(this, this[instanceName], events)
+          bindProps(this, this[instanceName], mappedProps);
+          bindEvents(this, this[instanceName], events);
 
           if (afterCreate) {
-            afterCreate.bind(this)(this[instanceName])
+            afterCreate.bind(this)(this[instanceName]);
           }
-          return this[instanceName]
-        })
-      this[promiseName] = promise
-      return { [promiseName]: promise }
+          return this[instanceName];
+        });
+      this[promiseName] = promise;
+      return {[promiseName]: promise};
     },
     unmounted() {
       // Note: not all Google Maps components support maps
       if (this[instanceName] && this[instanceName].setMap) {
-        this[instanceName].setMap(null)
+        this[instanceName].setMap(null);
       }
     },
     ...rest,
-  }
+  };
 }
 
 function assert(v, message) {
-  if (!v) throw new Error(message)
+  if (!v) throw new Error(message);
 }
 
 /**
@@ -129,16 +129,16 @@ function assert(v, message) {
 export function mappedPropsToVueProps(mappedProps) {
   return Object.entries(mappedProps)
     .map(([key, prop]) => {
-      const value = {}
+      const value = {};
 
-      if ('type' in prop) value.type = prop.type
-      if ('default' in prop) value.default = prop.default
-      if ('required' in prop) value.required = prop.required
+      if ('type' in prop) value.type = prop.type;
+      if ('default' in prop) value.default = prop.default;
+      if ('required' in prop) value.required = prop.required;
 
-      return [key, value]
+      return [key, value];
     })
     .reduce((acc, [key, val]) => {
-      acc[key] = val
-      return acc
-    }, {})
+      acc[key] = val;
+      return acc;
+    }, {});
 }

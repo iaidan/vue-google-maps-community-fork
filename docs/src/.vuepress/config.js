@@ -1,4 +1,4 @@
-const { description } = require('../../package')
+const {description} = require('../../package');
 
 module.exports = {
   /**
@@ -16,9 +16,9 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/config/#head
    */
   head: [
-    ['meta', { name: 'theme-color', content: '#2c3e50' }],
-    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+    ['meta', {name: 'theme-color', content: '#2c3e50'}],
+    ['meta', {name: 'apple-mobile-web-app-capable', content: 'yes'}],
+    ['meta', {name: 'apple-mobile-web-app-status-bar-style', content: 'black'}],
   ],
 
   /**
@@ -32,7 +32,7 @@ module.exports = {
     docsDir: '',
     editLinkText: '',
     logo: '/assets/logo.jpg',
-    head: [['meta', { name: 'theme-color', content: '#2c3e50' }]],
+    head: [['meta', {name: 'theme-color', content: '#2c3e50'}]],
     lastUpdated: false,
     nav: [
       {
@@ -93,4 +93,4 @@ module.exports = {
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
   plugins: ['@vuepress/plugin-back-to-top', '@vuepress/plugin-medium-zoom'],
-}
+};

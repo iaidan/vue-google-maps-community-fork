@@ -16,9 +16,12 @@ actionLink: /docs/
 
 ## Before starting
 
-It is important to notice that this repository was forked by the community to keep the library alive. You can get more infor about our decision [in this GitHub discussion](https://github.com/NathanAP/vue-google-maps-community-fork/discussions/1).
+It is important to notice that this repository was forked by the community to keep the library alive. You can get more
+infor about our
+decision [in this GitHub discussion](https://github.com/NathanAP/vue-google-maps-community-fork/discussions/1).
 
-Since this library is currently maintained by the community, every help is needed and appreciated! You can follow everything in our [GitHub](https://github.com/NathanAP/vue-google-maps-community-fork).
+Since this library is currently maintained by the community, every help is needed and appreciated! You can follow
+everything in our [GitHub](https://github.com/NathanAP/vue-google-maps-community-fork).
 
 ## Installation
 
@@ -30,7 +33,8 @@ npm install vue-google-maps-community-fork
 
 ### Pre-requisites
 
-To use this library you will need an API Key. You can learn how to get one [here](https://developers.google.com/maps/documentation/javascript/get-api-key).
+To use this library you will need an API Key. You can learn how to get
+one [here](https://developers.google.com/maps/documentation/javascript/get-api-key).
 
 ### Configure your enviroment
 
@@ -52,11 +56,14 @@ app
 
 ### Configuration for Nuxt
 
-Warning: this is part of the old documentation and I never used Nuxt, please let me know if it will work properly this way.
+Warning: this is part of the old documentation and I never used Nuxt, please let me know if it will work properly this
+way.
 
-In order to your Nuxt 3 project work properly with this library, you need to add `vue-google-maps-community-fork` to `build.transpile` property in your `nuxt.config.ts`.
+In order to your Nuxt 3 project work properly with this library, you need to add `vue-google-maps-community-fork` to
+`build.transpile` property in your `nuxt.config.ts`.
 
-Also, as pointed [here](https://github.com/NathanAP/vue-google-maps-community-fork/issues/14), you will need to add `@googlemaps/markercluster` into it as well for your builded project work properly.
+Also, as pointed [here](https://github.com/NathanAP/vue-google-maps-community-fork/issues/14), you will need to add
+`@googlemaps/markercluster` into it as well for your builded project work properly.
 
 ```ts
 export default defineNuxtConfig({

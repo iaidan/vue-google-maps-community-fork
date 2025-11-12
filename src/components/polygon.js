@@ -1,4 +1,4 @@
-import buildComponent from './build-component.js'
+import buildComponent from './build-component.js';
 
 const props = {
   draggable: {
@@ -20,7 +20,7 @@ const props = {
     twoWay: true,
     noBind: true,
   },
-}
+};
 
 const events = [
   'click',
@@ -36,7 +36,7 @@ const events = [
   'rightclick',
   'paths_changed',
   'path_changed'
-]
+];
 
 export default buildComponent({
   props: {
@@ -51,17 +51,18 @@ export default buildComponent({
   ctr: () => google.maps.Polygon,
   emits: events,
   beforeCreate(options) {
-    if (!options.path) delete options.path
-    if (!options.paths) delete options.paths
+    if (!options.path) delete options.path;
+    if (!options.paths) delete options.paths;
   },
 
   afterCreate(inst) {
-    let clearEvents = () => {}
+    let clearEvents = () => {
+    };
     events.forEach((event) => {
       inst.addListener(event, (payload) => {
-        this.$emit(event, payload)
-      })
-    })
+        this.$emit(event, payload);
+      });
+    });
 
     // Watch paths, on our own, because we do not want to set either when it is
     // empty
@@ -69,73 +70,73 @@ export default buildComponent({
       'paths',
       (paths) => {
         if (paths) {
-          clearEvents()
+          clearEvents();
 
-          inst.setPaths(paths)
+          inst.setPaths(paths);
 
           const updatePaths = () => {
-            this.$emit('paths_changed', inst.getPaths())
-          }
-          const eventListeners = []
+            this.$emit('paths_changed', inst.getPaths());
+          };
+          const eventListeners = [];
 
-          const mvcArray = inst.getPaths()
+          const mvcArray = inst.getPaths();
           for (let i = 0; i < mvcArray.getLength(); i++) {
-            let mvcPath = mvcArray.getAt(i)
-            eventListeners.push([mvcPath, mvcPath.addListener('insert_at', updatePaths)])
-            eventListeners.push([mvcPath, mvcPath.addListener('remove_at', updatePaths)])
-            eventListeners.push([mvcPath, mvcPath.addListener('set_at', updatePaths)])
+            let mvcPath = mvcArray.getAt(i);
+            eventListeners.push([mvcPath, mvcPath.addListener('insert_at', updatePaths)]);
+            eventListeners.push([mvcPath, mvcPath.addListener('remove_at', updatePaths)]);
+            eventListeners.push([mvcPath, mvcPath.addListener('set_at', updatePaths)]);
           }
-          eventListeners.push([mvcArray, mvcArray.addListener('insert_at', updatePaths)])
-          eventListeners.push([mvcArray, mvcArray.addListener('remove_at', updatePaths)])
-          eventListeners.push([mvcArray, mvcArray.addListener('set_at', updatePaths)])
+          eventListeners.push([mvcArray, mvcArray.addListener('insert_at', updatePaths)]);
+          eventListeners.push([mvcArray, mvcArray.addListener('remove_at', updatePaths)]);
+          eventListeners.push([mvcArray, mvcArray.addListener('set_at', updatePaths)]);
 
           clearEvents = () => {
             eventListeners.map(
               (
                 [obj, listenerHandle] // eslint-disable-line no-unused-vars
               ) => google.maps.event.removeListener(listenerHandle)
-            )
-          }
+            );
+          };
         }
       },
       {
         deep: this.deepWatch,
         immediate: true,
       }
-    )
+    );
 
     this.$watch(
       'path',
       (path) => {
         if (path) {
-          clearEvents()
+          clearEvents();
 
-          inst.setPaths(path)
+          inst.setPaths(path);
 
-          const mvcPath = inst.getPath()
-          const eventListeners = []
+          const mvcPath = inst.getPath();
+          const eventListeners = [];
 
           const updatePaths = () => {
-            this.$emit('path_changed', inst.getPath())
-          }
+            this.$emit('path_changed', inst.getPath());
+          };
 
-          eventListeners.push([mvcPath, mvcPath.addListener('insert_at', updatePaths)])
-          eventListeners.push([mvcPath, mvcPath.addListener('remove_at', updatePaths)])
-          eventListeners.push([mvcPath, mvcPath.addListener('set_at', updatePaths)])
+          eventListeners.push([mvcPath, mvcPath.addListener('insert_at', updatePaths)]);
+          eventListeners.push([mvcPath, mvcPath.addListener('remove_at', updatePaths)]);
+          eventListeners.push([mvcPath, mvcPath.addListener('set_at', updatePaths)]);
 
           clearEvents = () => {
             eventListeners.map(
               (
                 [obj, listenerHandle] // eslint-disable-line no-unused-vars
               ) => google.maps.event.removeListener(listenerHandle)
-            )
-          }
+            );
+          };
         }
       },
       {
         deep: this.deepWatch,
         immediate: true,
       }
-    )
+    );
   },
-})
+});

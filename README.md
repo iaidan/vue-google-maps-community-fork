@@ -1,10 +1,13 @@
 ## Welcome!
 
-Hi! Vue Google Maps Community Fork is a communitary repository. It is a set of the most used Google Maps components made for VueJS 3.
+Hi! Vue Google Maps Community Fork is a communitary repository. It is a set of the most used Google Maps components made
+for VueJS 3.
 
 ## About this repository
 
-This repository was forked in October/2022 after the original repository's community decide that it was the best for the project. In [the same discussion](https://github.com/NathanAP/vue-google-maps-community-fork/discussions/1) you will find every information you need about our motivation.
+This repository was forked in October/2022 after the original repository's community decide that it was the best for the
+project. In [the same discussion](https://github.com/NathanAP/vue-google-maps-community-fork/discussions/1) you will
+find every information you need about our motivation.
 
 We have an update! Fawmi answered us, please access the discussion to know more about it!
 
@@ -14,9 +17,11 @@ You can follow the official changelog [here](https://github.com/NathanAP/vue-goo
 
 ## Documentation
 
-You can find a detailed documentation [here](https://vue-google-maps-community-fork.netlify.app). It will show you how to use every component this library contains and demonstrate some examples for you.
+You can find a detailed documentation [here](https://vue-google-maps-community-fork.netlify.app). It will show you how
+to use every component this library contains and demonstrate some examples for you.
 
-Also, you can enter in [this discussion](https://github.com/NathanAP/vue-google-maps-community-fork/discussions/9) to talk about or read the documentation changelog.
+Also, you can enter in [this discussion](https://github.com/NathanAP/vue-google-maps-community-fork/discussions/9) to
+talk about or read the documentation changelog.
 
 It is in our plans to make it better and more detailed, but for now it might help you start using the library.
 
@@ -30,14 +35,15 @@ npm install vue-google-maps-community-fork
 
 ## Basic usage
 
-To use this library you will need an API Key. You can learn how to get an API Key [here](https://developers.google.com/maps/documentation/javascript/get-api-key).
+To use this library you will need an API Key. You can learn how to get an API
+Key [here](https://developers.google.com/maps/documentation/javascript/get-api-key).
 
 ### Configure Vue to use the Components
 
 In your `main.js`
 
 ```js
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import VueGoogleMaps from 'vue-google-maps-community-fork'
 
 const app = createApp(App)
@@ -64,11 +70,12 @@ Some notes about this:
 
 ```js
     optimizeDeps: {
-        include: [
-            "vue-google-maps-community-fork",
-            "fast-deep-equal",
-        ],
-    },
+  include: [
+    "vue-google-maps-community-fork",
+    "fast-deep-equal",
+  ],
+}
+,
 ```
 
 - This **IS NOT** a fix! This is just a hack we are using to avoid the problem.
@@ -77,20 +84,21 @@ Some notes about this:
 ### Using our components anywhere
 
 ```vue
+
 <template>
   <GMapMap :center="center" :zoom="7" map-type-id="terrain" style="width: 100vw; height: 900px">
   </GMapMap>
 </template>
 
 <script>
-export default {
-  name: 'App',
-  data() {
-    return {
-      center: { lat: 51.093048, lng: 6.84212 },
-    }
-  },
-}
+  export default {
+    name: 'App',
+    data() {
+      return {
+        center: {lat: 51.093048, lng: 6.84212},
+      }
+    },
+  }
 </script>
 ```
 
@@ -101,29 +109,30 @@ export default {
 If you need to add markers to the `Map`, add `GMapMarker` as child of `GMapMap` component.
 
 ```vue
+
 <template>
   <GMapMap :center="center" :zoom="7" map-type-id="terrain" style="width: 500px; height: 300px">
-    <GMapMarker :key="marker.id" v-for="marker in markers" :position="marker.position" />
+    <GMapMarker :key="marker.id" v-for="marker in markers" :position="marker.position"/>
   </GMapMap>
 </template>
 <script>
-export default {
-  name: 'App',
-  data() {
-    return {
-      center: { lat: 51.093048, lng: 6.84212 },
-      markers: [
-        {
-          id: 'dfsldjl3r',
-          position: {
-            lat: 51.093048,
-            lng: 6.84212,
+  export default {
+    name: 'App',
+    data() {
+      return {
+        center: {lat: 51.093048, lng: 6.84212},
+        markers: [
+          {
+            id: 'dfsldjl3r',
+            position: {
+              lat: 51.093048,
+              lng: 6.84212,
+            },
           },
-        },
-      ],
-    }
-  },
-}
+        ],
+      }
+    },
+  }
 </script>
 ```
 
@@ -132,54 +141,55 @@ export default {
 If you want to zoom in on the map as far as you can, but still see all markers, reference this code snippet.
 
 ```vue
+
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue';
+  import {onMounted, ref, watch} from 'vue';
 
-const markers = ref([
-  {
-    lat: 47.8557578,
-    lng: 12.1133382,
-  },
-  {
-    lat: 47.8570908,
-    lng: 12.1199985,
-  },
-  {
-    lat: 47.8568879,
-    lng: 12.1270439,
-  },
-]);
+  const markers = ref([
+    {
+      lat: 47.8557578,
+      lng: 12.1133382,
+    },
+    {
+      lat: 47.8570908,
+      lng: 12.1199985,
+    },
+    {
+      lat: 47.8568879,
+      lng: 12.1270439,
+    },
+  ]);
 
-const googleMapRef = ref();
+  const googleMapRef = ref();
 
-/**
- * Centers the map on the markers and zooms to fit the bounds.
- */
-async function fitMarkerBounds() {
-  const googleMapInstance = await googleMapRef.value.$mapPromise;
+  /**
+   * Centers the map on the markers and zooms to fit the bounds.
+   */
+  async function fitMarkerBounds() {
+    const googleMapInstance = await googleMapRef.value.$mapPromise;
 
-  const bounds = new window.google.maps.LatLngBounds();
+    const bounds = new window.google.maps.LatLngBounds();
 
-  markers.value.forEach((marker) => {
-    bounds.extend(marker);
-  });
+    markers.value.forEach((marker) => {
+      bounds.extend(marker);
+    });
 
-  googleMapInstance.fitBounds(bounds);
-}
+    googleMapInstance.fitBounds(bounds);
+  }
 
-// center markers on first render
-onMounted(fitMarkerBounds);
+  // center markers on first render
+  onMounted(fitMarkerBounds);
 
-// center markers, if they are adjusted
-watch(markers, fitMarkerBounds);
+  // center markers, if they are adjusted
+  watch(markers, fitMarkerBounds);
 </script>
 
 <template>
   <GMapMap ref="googleMapRef">
     <GMapMarker
-        v-for="(marker, index) in markers"
-        :key="`map-marker-${index}`"
-        :position="marker"
+      v-for="(marker, index) in markers"
+      :key="`map-marker-${index}`"
+      :position="marker"
     />
   </GMapMap>
 </template>
@@ -188,11 +198,16 @@ watch(markers, fitMarkerBounds);
 
 ### Cluster
 
-If you have too many markers, it is helpful to cluster markers. You can easily cluster markers by wrapping your markers with `GMapCluster` component.
+If you have too many markers, it is helpful to cluster markers. You can easily cluster markers by wrapping your markers
+with `GMapCluster` component.
 
-Note: clusters were not working in the original version of this package. All of the clusters are here because of the community fixes. If you're having trouble with it please [try using the docs](https://vue-google-maps-community-fork.netlify.app/components/cluster.html). Also, feel free to open discussions or issues to get help.
+Note: clusters were not working in the original version of this package. All of the clusters are here because of the
+community fixes. If you're having trouble with it
+please [try using the docs](https://vue-google-maps-community-fork.netlify.app/components/cluster.html). Also, feel free
+to open discussions or issues to get help.
 
 ```vue
+
 <template>
   <GMapMap :center="center" :zoom="7" map-type-id="terrain" style="width: 500px; height: 300px">
     <GMapCluster>
@@ -208,31 +223,32 @@ Note: clusters were not working in the original version of this package. All of 
   </GMapMap>
 </template>
 <script>
-export default {
-  name: 'App',
-  data() {
-    return {
-      center: { lat: 51.093048, lng: 6.84212 },
-      markers: [
-        {
-          position: {
-            lat: 51.093048,
-            lng: 6.84212,
-          },
-        }, // A long list of clusters
-      ],
-    }
-  },
-}
+  export default {
+    name: 'App',
+    data() {
+      return {
+        center: {lat: 51.093048, lng: 6.84212},
+        markers: [
+          {
+            position: {
+              lat: 51.093048,
+              lng: 6.84212,
+            },
+          }, // A long list of clusters
+        ],
+      }
+    },
+  }
 </script>
 ```
 
 ### Heatmap
 
-If you need to add heatmap layer to the Map, add visualization library in load config and add GMapHeatmap as child of GMapMap component.
+If you need to add heatmap layer to the Map, add visualization library in load config and add GMapHeatmap as child of
+GMapMap component.
 
 ```js
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import VueGoogleMaps from '@fawmi/vue-google-maps'
 
 const app = createApp(App)
@@ -247,38 +263,39 @@ app
 ```
 
 ```vue
+
 <template>
   <GMapMap ref="myMapRef" :center="center" :zoom="zoom" style="width: 100%; height: 600px">
     <GMapHeatmap :data="heatData"></GMapHeatmap>
   </GMapMap>
 </template>
 <script>
-export default {
-  name: 'App',
-  setup() {
-    const center = { lat: 52.2985593, lng: 104.2455337 }
-    const zoom = 12
-    const myMapRef = ref()
-    const heatData = ref([])
+  export default {
+    name: 'App',
+    setup() {
+      const center = {lat: 52.2985593, lng: 104.2455337}
+      const zoom = 12
+      const myMapRef = ref()
+      const heatData = ref([])
 
-    watch(myMapRef, (googleMap) => {
-      if (googleMap) {
-        googleMap.$mapPromise.then((map) => {
-          heatData.value = [
-            { location: new google.maps.LatLng({ lat: 52.2985593, lng: 104.2455337 }) },
-          ]
-        })
+      watch(myMapRef, (googleMap) => {
+        if (googleMap) {
+          googleMap.$mapPromise.then((map) => {
+            heatData.value = [
+              {location: new google.maps.LatLng({lat: 52.2985593, lng: 104.2455337})},
+            ]
+          })
+        }
+      })
+
+      return {
+        center,
+        zoom,
+        heatData,
+        myMapRef,
       }
-    })
-
-    return {
-      center,
-      zoom,
-      heatData,
-      myMapRef,
-    }
-  },
-}
+    },
+  }
 </script>
 ```
 
@@ -289,15 +306,16 @@ Checkout docs for more component
 If you want to access `google map` object, you can access it by getting ref of the map object.
 
 ```vue
+
 <template>
-  <GMapMap ref="myMapRef" />
+  <GMapMap ref="myMapRef"/>
 </template>
 <script>
-export default {
-  mounted() {
-    console.log(this.$refs.myMapRef)
-  },
-}
+  export default {
+    mounted() {
+      console.log(this.$refs.myMapRef)
+    },
+  }
 </script>
 ```
 
@@ -305,9 +323,11 @@ export default {
 
 You can pass Map options using options property:
 
-See [MapOptions](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) for a complete list of available options.
+See [MapOptions](https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions) for a complete
+list of available options.
 
 ```vue
+
 <GMapMap
   :options="{
     zoomControl: true,
@@ -328,11 +348,14 @@ Many other components are also supported. Checkout [docs](https://vue-map.netlif
 
 ## Nuxt 3 usage
 
-Warning: this is part of the old documentation and I never used Nuxt, please let me know if it will work properly this way.
+Warning: this is part of the old documentation and I never used Nuxt, please let me know if it will work properly this
+way.
 
-In order to your Nuxt 3 project work properly with this library, you need to add `vue-google-maps-community-fork` to `build.transpile` property in your `nuxt.config.ts`.
+In order to your Nuxt 3 project work properly with this library, you need to add `vue-google-maps-community-fork` to
+`build.transpile` property in your `nuxt.config.ts`.
 
-Also, as pointed [here](https://github.com/NathanAP/vue-google-maps-community-fork/issues/14), you will need to add `@googlemaps/markercluster` into it as well for your builded project work properly.
+Also, as pointed [here](https://github.com/NathanAP/vue-google-maps-community-fork/issues/14), you will need to add
+`@googlemaps/markercluster` into it as well for your builded project work properly.
 
 Here is an example:
 
@@ -347,7 +370,7 @@ export default defineNuxtConfig({
 After that, you need to configure your plugin `~/plugin/vueGoogleMaps.ts`.
 
 ```ts
-import { defineNuxtPlugin } from '#app'
+import {defineNuxtPlugin} from '#app'
 import VueGoogleMaps from 'vue-google-maps-community-fork'
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -361,4 +384,5 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 ## Sponsorship
 
-Please read [this discussion](https://github.com/NathanAP/vue-google-maps-community-fork/discussions/1) where we talk about sponsorships.
+Please read [this discussion](https://github.com/NathanAP/vue-google-maps-community-fork/discussions/1) where we talk
+about sponsorships.

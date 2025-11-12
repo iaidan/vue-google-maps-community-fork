@@ -2,7 +2,8 @@
 
 [Interactive example on Playcode](https://playcode.io/1041264).
 
-To open or close info windows after marker click, you can modify the `:opened` prop and maintain a state variable containing ID of the opened marker.
+To open or close info windows after marker click, you can modify the `:opened` prop and maintain a state variable
+containing ID of the opened marker.
 
 ```html
 <script setup>

@@ -6,7 +6,8 @@ Here you will find some uses for Google Maps Clusterers.
 
 ## Before everything
 
-Clustering your markers are only possible because of `@googlemaps/markerclusterer`! The community is thankful for your effort!
+Clustering your markers are only possible because of `@googlemaps/markerclusterer`! The community is thankful for your
+effort!
 
 ## Cluster your markers
 

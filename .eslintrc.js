@@ -4,8 +4,8 @@ module.exports = {
     es6: true,
     node: true,
   },
-  "globals": {
-    "google": true
+  globals: {
+    google: true,
   },
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -20,13 +20,17 @@ module.exports = {
   extends: [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
-    'plugin:prettier/recommended',
-    'prettier',
   ],
 
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'vue/multi-word-component-names': ['off'],
+
+    // User-requested formatting rules
+    semi: ['error', 'always'],
+    'comma-dangle': ['error', 'always-multiline'],
+    curly: ['error', 'all'],
+    'brace-style': ['error', '1tbs'],
   },
-}
+};

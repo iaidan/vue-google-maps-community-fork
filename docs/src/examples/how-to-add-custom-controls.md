@@ -2,7 +2,8 @@
 
 [Interactive example on Playcode](https://playcode.io/1041257)
 
-To add custom controls, you can access google maps object and add controls to it, look at this example or follow the interactive example on CodeSandbox above.
+To add custom controls, you can access google maps object and add controls to it, look at this example or follow the
+interactive example on CodeSandbox above.
 
 ## Example
 

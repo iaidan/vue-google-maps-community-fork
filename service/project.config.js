@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = {
   outputDir: 'dist',
@@ -11,4 +11,4 @@ module.exports = {
   build: {
     publicPath: './',
   },
-}
+};

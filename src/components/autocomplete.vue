@@ -2,13 +2,13 @@
   <template v-if="$slots['input']">
     <slot name="input" v-bind="$attrs"></slot>
   </template>
-  <input v-else-if="!$slots['input']" ref="input" v-bind="$attrs" v-on="domListeners" />
+  <input v-else-if="!$slots['input']" ref="input" v-bind="$attrs" v-on="domListeners"/>
 </template>
 
 <script>
-import { bindProps, getPropsValues } from '../utils/bindProps.js'
-import downArrowSimulator from '../utils/simulateArrowDown.js'
-import { mappedPropsToVueProps } from './build-component'
+import {bindProps, getPropsValues} from '../utils/bindProps.js';
+import downArrowSimulator from '../utils/simulateArrowDown.js';
+import {mappedPropsToVueProps} from './build-component';
 
 const mappedProps = {
   bounds: {
@@ -23,10 +23,10 @@ const mappedProps = {
   types: {
     type: Array,
     default: function () {
-      return []
+      return [];
     },
   },
-}
+};
 
 const props = {
   selectFirstOnEnter: {
@@ -37,56 +37,56 @@ const props = {
   options: {
     type: Object,
   },
-}
+};
 
 export default {
   emits: ['place_changed'],
   data() {
-    return { useLegacy: true }
+    return {useLegacy: true};
   },
   mounted() {
-    const _this = this
+    const _this = this;
     this.$gmapApiPromiseLazy().then(() => {
       // get correct input from fallback or slot
-      let refInput = _this.$refs.input
+      let refInput = _this.$refs.input;
       if (_this.$slots.input) {
-        const refName = _this.$slots.input()[0].props.ref
-        const scopedInput = _this.$slots.input()[0].ref.i.ctx.$refs[refName]
+        const refName = _this.$slots.input()[0].props.ref;
+        const scopedInput = _this.$slots.input()[0].ref.i.ctx.$refs[refName];
         if (scopedInput) {
-          refInput = scopedInput.$el.getElementsByTagName('input')[0]
+          refInput = scopedInput.$el.getElementsByTagName('input')[0];
         }
       }
       if (this.selectFirstOnEnter) {
-        downArrowSimulator(refInput)
+        downArrowSimulator(refInput);
       }
 
       if (typeof google.maps.places.Autocomplete !== 'function') {
         throw new Error(
-          "google.maps.places.Autocomplete is undefined. Did you add 'places' to libraries when loading Google Maps?"
-        )
+          'google.maps.places.Autocomplete is undefined. Did you add \'places\' to libraries when loading Google Maps?'
+        );
       }
 
       /* eslint-disable no-unused-vars */
       const finalOptions = {
         ...getPropsValues(this, mappedProps),
         ...this.options,
-      }
+      };
 
-      this.$autocomplete = new google.maps.places.Autocomplete(refInput, finalOptions)
-      bindProps(this, this.$autocomplete, mappedProps)
+      this.$autocomplete = new google.maps.places.Autocomplete(refInput, finalOptions);
+      bindProps(this, this.$autocomplete, mappedProps);
 
       this.$watch('componentRestrictions', (v) => {
         if (v !== undefined) {
-          this.$autocomplete.setComponentRestrictions(v)
+          this.$autocomplete.setComponentRestrictions(v);
         }
-      })
+      });
 
       // Not using `bindEvents` because we also want
       // to return the result of `getPlace()`
       this.$autocomplete.addListener('place_changed', () => {
-        this.$emit('place_changed', this.$autocomplete.getPlace())
-      })
-    })
+        this.$emit('place_changed', this.$autocomplete.getPlace());
+      });
+    });
   },
   computed: {
     domListeners() {
@@ -112,21 +112,21 @@ export default {
         onPaste: 'paste',
         onCut: 'cut',
         onCopy: 'copy',
-      }
+      };
 
-      const out = {}
+      const out = {};
       for (const [key, val] of Object.entries(this.$attrs)) {
-        const domEvent = allowMap[key]
+        const domEvent = allowMap[key];
         if (domEvent && (typeof val === 'function' || Array.isArray(val))) {
-          out[domEvent] = val
+          out[domEvent] = val;
         }
       }
-      return out
+      return out;
     },
   },
   props: {
     ...mappedPropsToVueProps(mappedProps),
     ...props,
   },
-}
+};
 </script>

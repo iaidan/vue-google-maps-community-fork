@@ -9,7 +9,7 @@
  * */
 export default {
   inject: {
-    $mapPromise: { default: 'abcdef' },
+    $mapPromise: {default: 'abcdef'},
   },
 
   provide() {
@@ -23,9 +23,9 @@ export default {
     // already set by the time the
     // component's provide() is called.
     this.$mapPromise.then((map) => {
-      this.$map = map
-    })
+      this.$map = map;
+    });
 
-    return {}
+    return {};
   },
-}
+};

@@ -1,4 +1,4 @@
-import buildComponent from './build-component.js'
+import buildComponent from './build-component.js';
 
 const props = {
   bounds: {
@@ -17,7 +17,7 @@ const props = {
     type: Object,
     twoWay: false,
   },
-}
+};
 
 const events = [
   'click',
@@ -31,7 +31,7 @@ const events = [
   'mouseover',
   'mouseup',
   'rightclick',
-]
+];
 
 export default buildComponent({
   mappedProps: props,
@@ -42,8 +42,8 @@ export default buildComponent({
   afterCreate(inst) {
     events.forEach((event) => {
       inst.addListener(event, (payload) => {
-        this.$emit(event, payload)
-      })
-    })
+        this.$emit(event, payload);
+      });
+    });
   },
-})
+});
