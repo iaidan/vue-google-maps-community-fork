@@ -11,6 +11,7 @@ import InfoWindow from './components/infoWindow.vue'
 import Map from './components/map.vue'
 import Heatmap from './components/heatmap'
 import Autocomplete from './components/autocomplete.vue'
+import AdvancedMarker from './components/advancedMarker.vue'
 
 import MapElementMixin from './components/mapElementMixin'
 import buildComponent from './components/build-component'
@@ -21,6 +22,7 @@ let GMapApi = null
 export {
   loadGMapApi,
   Marker,
+  AdvancedMarker,
   Polyline,
   Polygon,
   Circle,
@@ -67,6 +69,7 @@ export default function install(Vue, options) {
   if (options.installComponents) {
     Vue.component('GMapMap', Map)
     Vue.component('GMapMarker', Marker)
+    Vue.component('GMapAdvancedMarker', AdvancedMarker)
     Vue.component('GMapInfoWindow', InfoWindow)
     Vue.component('GMapCluster', GMapCluster)
     Vue.component('GMapPolyline', Polyline)
