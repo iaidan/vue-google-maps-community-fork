@@ -36,6 +36,7 @@ export {
   Heatmap,
   buildComponent,
   Autocomplete,
+  PlaceAutocomplete,
   MountableMixin,
 };
 
